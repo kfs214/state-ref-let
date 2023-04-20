@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState, useRef } from "react";
 
-function App() {
+export const App = () => {
+  const [stateCount, setStateCont] = useState(0);
+  const refCount = useRef(0);
+  let letCount = 0;
+
+  const countState = () => {
+    setStateCont((prev) => prev + 1);
+  };
+  const countRef = () => {
+    refCount.current++;
+  };
+  const countLet = () => {
+    letCount++;
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <button onClick={countState}>count State</button>
+      <button onClick={countRef}>count Ref</button>
+      <button onClick={countLet}>count Let</button>
+      <p>state:{stateCount}</p>
+      <p>ref:{refCount.current}</p>
+      <p>let:{letCount}</p>
+    </>
   );
-}
-
-export default App;
+};
